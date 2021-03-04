@@ -1,5 +1,5 @@
 <h1>Add Entry</h1>
-<form method="post" action="/new">
+<form method="post" action="/">
   <label for="ts">Time of Entry</label>
   <input id="ts" name="ts" type="datetime-local">
 

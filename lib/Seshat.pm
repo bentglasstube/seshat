@@ -3,6 +3,7 @@ package Seshat;
 use Dancer2;
 use Dancer2::Plugin::Database;
 use DateTime;
+use DateTime::Format::ISO8601;
 
 hook before_template_render => sub {
   my $tokens = shift;
@@ -31,6 +32,35 @@ get '/' => sub {
   }
 
   template 'log.tt', { entries => \@entries };
+};
+
+post '/' => sub {
+  my $time;
+
+  if (my $ts = body_parameters->{ts}) {
+    $time = DateTime::Format::ISO8601->parse_datetime($ts);
+    $time->set_time_zone('America/Los_Angeles');
+  } else {
+    $time = DateTime->now();
+  }
+
+  database->quick_insert('entry', {
+    logged_at => $time->epoch,
+    entry => body_parameters->{entry}
+  });
+
+  if (my $mood = body_parameters->{mood}) {
+    my $entry_id = database->last_insert_id();
+
+    database->quick_insert('tag', {
+      entry_id => $entry_id,
+      tag => 'mood',
+      value => $mood,
+    });
+  }
+
+
+  redirect '/';
 };
 
 1;
