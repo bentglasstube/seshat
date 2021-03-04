@@ -4,7 +4,7 @@
   <input id="ts" name="ts" type="datetime-local">
 
   <label for="entry">Content</label>
-  <textarea id="entry" name="entry"></textarea>
+  <textarea id="entry" name="entry" autofocus></textarea>
 
   <label for="mood">Mood</label>
   [% FOREACH v IN mood_icons.keys.sort %]
