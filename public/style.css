@@ -19,10 +19,10 @@ p.entry {
 }
 
 ul.tags {
+  margin-top: 0.5em;
   margin-left: 4.5em;
   border-left: 1px solid #ddd;
   padding-left: 0.5em;
-  margin-top: 0;
   list-style: none;
   color: #999;
 }
