@@ -1,0 +1,38 @@
+<h1>Add Entry</h1>
+<form method="post" action="/new">
+  <label for="ts">Time of Entry</label>
+  <input id="ts" name="ts" type="datetime-local">
+
+  <label for="entry">Content</label>
+  <textarea id="entry" name="entry"></textarea>
+
+  <label for="mood">Mood</label>
+  [% FOREACH v IN mood_icons.keys.sort %]
+    <input class="inline" id="mood-[% v %]" name="mood" type="radio" value="[% v %]">
+    <label class="inline" for="mood-[% v %]">[% mood_icons.$v %]</label>
+  [% END %]
+  </label>
+
+  <button type="submit">Add</button>
+</form>
+
+[% FOREACH entry IN entries %]
+  [% IF curdate != entry.dt.ymd %]<h1>[% entry.dt.strftime('%B %d, %Y') %]</h1>[% END %]
+  [% curdate = entry.dt.ymd %]
+  <h2>[% entry.dt.strftime('%H:%M') %]</h2>
+  <p class="entry">[% entry.entry %]</p>
+  [% UNLESS entry.tags.empty %]
+    <ul class="tags">
+      [% FOREACH tag IN entry.tags %]
+        <li>
+          [% IF tag.tag == 'mood' %]
+            [% mood_icons.${tag.value} %]
+          [% ELSE %]
+            [% tag.tag %]
+            [% IF tag.value %]<span class="v">[% tag.value %]</span>[% END %]
+          [% END %]
+        </li>
+      [% END %]
+    </ul>
+  [% END %]
+[% END %]

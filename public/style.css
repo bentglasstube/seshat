@@ -1,0 +1,56 @@
+h1 {
+  border-bottom: 1px solid #ddd;
+}
+
+h2 {
+  color: #777;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0;
+  float: left;
+}
+
+p.entry {
+  margin-left: 4.5em;
+  border-left: 1px solid #ddd;
+  padding-left: 0.5em;
+  margin-bottom: 0;
+}
+
+ul.tags {
+  margin-left: 4.5em;
+  border-left: 1px solid #ddd;
+  padding-left: 0.5em;
+  margin-top: 0;
+  list-style: none;
+  color: #999;
+}
+
+.empty {
+  color: #555;
+  font-style: oblique;
+  text-align: center;
+}
+
+label, button {
+  display: block;
+  margin-top: 1em;
+}
+
+input, textarea {
+  display: block;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  display: inline;
+  font-size: 2em;
+  color: #999;
+}
+
+input[type="radio"]:checked + label {
+  color: #000;
+}
