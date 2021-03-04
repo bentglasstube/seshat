@@ -9,11 +9,11 @@ hook before_template_render => sub {
   my $tokens = shift;
 
   $tokens->{mood_icons} = {
-    1 => '&#x1f627;',
-    2 => '&#x2639;',
+    1 => '&#x1f622;',
+    2 => '&#x1f641;',
     3 => '&#x1f610;',
-    4 => '&#x1f600;',
-    5 => '&#x1f603;',
+    4 => '&#x1f642;',
+    5 => '&#x1f601;',
   };
 };
 
