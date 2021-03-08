@@ -18,7 +18,7 @@ hook before_template_render => sub {
 };
 
 get '/' => sub {
-  my $limit = DateTime->today(time_zone => 'America/Los_Angeles')->subtract(weeks => 1);
+  my $limit = DateTime->today(time_zone => config->{time_zone})->subtract(weeks => 1);
 
   my @entries = database->quick_select('entry',
     { logged_at => { ge => $limit->epoch } },
@@ -29,7 +29,7 @@ get '/' => sub {
     $entry->{tags} = [database->quick_select('tag', {entry_id => $entry->{entry_id}})];
     $entry->{dt} = DateTime->from_epoch(
       epoch => $entry->{logged_at},
-      time_zone => 'America/Los_Angeles',
+      time_zone => config->{time_zone},
     );
   }
 
@@ -41,7 +41,7 @@ post '/' => sub {
 
   if (my $ts = body_parameters->{ts}) {
     $time = DateTime::Format::ISO8601->parse_datetime($ts);
-    $time->set_time_zone('America/Los_Angeles');
+    $time->set_time_zone(config->{time_zone});
   } else {
     $time = DateTime->now();
   }

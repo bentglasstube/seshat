@@ -1,5 +1,6 @@
 layout: 'main'
 template: 'template_toolkit'
+time_zone: 'America/Los_Angeles'
 
 plugins:
   Database:
