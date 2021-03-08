@@ -18,10 +18,12 @@ hook before_template_render => sub {
 };
 
 get '/' => sub {
-  my @entries = database->quick_select('entry', {}, {
-    order_by => { desc => 'logged_at' },
-    limit => 10,
-  });
+  my $limit = DateTime->today(time_zone => 'America/Los_Angeles')->subtract(weeks => 1);
+
+  my @entries = database->quick_select('entry',
+    { logged_at => { ge => $limit->epoch } },
+    { order_by => { desc => 'logged_at' } },
+  );
 
   foreach my $entry (@entries) {
     $entry->{tags} = [database->quick_select('tag', {entry_id => $entry->{entry_id}})];
