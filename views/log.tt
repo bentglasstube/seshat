@@ -1,3 +1,5 @@
+[% USE Markdown %]
+
 <h1>Add Entry</h1>
 <form method="post" action="/">
   <label for="ts">Time of Entry</label>
@@ -20,7 +22,7 @@
   [% IF curdate != entry.dt.ymd %]<h1>[% entry.dt.strftime('%B %d, %Y') %]</h1>[% END %]
   [% curdate = entry.dt.ymd %]
   <h2>[% entry.dt.strftime('%H:%M') %]</h2>
-  <p class="entry">[% entry.entry %]</p>
+  <div class="entry">[% entry.entry | markdown %]</div>
   [% UNLESS entry.tags.empty %]
     <ul class="tags">
       [% FOREACH tag IN entry.tags %]

@@ -11,15 +11,20 @@ h2 {
   clear: left;
 }
 
-p.entry {
+p {
+  margin: 0;
+  padding: 0 0 1em 0;
+}
+
+div.entry {
   margin: 0 0 0 4.5em;
   padding: 0 0 0 0.5em;
   border-left: 1px solid #ddd;
 }
 
 ul.tags {
-  margin: 0 0 0 4.5em;
-  padding: 0.5em;
+  margin: -1em 0 0 4.5em;
+  padding: 0.5em 0.5em 1em 0.5em;
   border-left: 1px solid #ddd;
   list-style: none;
   color: #999;

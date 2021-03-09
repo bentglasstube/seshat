@@ -6,3 +6,8 @@ requires 'DateTime';
 requires 'DateTime::Format::ISO8601';
 requires 'DBD::SQLite';
 requires 'Template';
+requires 'Template::Plugin::Markdown';
+requires 'Text::Markdown';
+
+# Text::Markdown needs this but doesn't seem to import it correctly
+requires 'Module::Install';
